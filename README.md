@@ -1,6 +1,6 @@
 ## Welcome to GitHub Pages
 
-[demo](https://github.com/melbourne-app-development/persistence-layer/demo.markdown)
+[demo](https://github.com/melbourne-app-development/persistence-layer/demo.html)
 
 You can use the [editor on GitHub](https://github.com/melbourne-app-development/persistence-layer/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
 
