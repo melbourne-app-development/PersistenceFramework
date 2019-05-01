@@ -2,7 +2,7 @@
 
 |Setting|Description|
 |-------|-----------|
-|**__Testing Settings__**| |
+|**__Testing Settings**__| |
 | Boolean DebugMode |If true displays app console messages. The applicaiton should use this as well.|
 | Boolean DebugBypassConnectivityTest |If set to true the app will assume connectivity without checking. For testing.|
 | Boolean DebugDetailMode |Show a lower level of detail when debuging.|
