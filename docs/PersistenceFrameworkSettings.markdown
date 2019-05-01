@@ -2,12 +2,12 @@
 
 |Setting|Description|
 |-------|-----------|
-|Testing Settings| |
+|**Testing Settings**| |
 | Boolean DebugMode |If true displays app console messages. The applicaiton should use this as well.|
 | Boolean DebugBypassConnectivityTest |If set to true the app will assume connectivity without checking. For testing.|
 | Boolean DebugDetailMode |Show a lower level of detail when debuging.|
  | | |
-|Server sync settings| |
+|**Server sync setting**s| |
 | Boolean IdsAreGUIDs |Whether the Ids are GUIDDS. If Id's aren't GUIDs then they are assumed to be integers.|
 | AuthType AuthType |This will be updated via the login process to record the current authentication type.|
 | String BaseApiUrl |The connection string of the api, including the "/api" part.|
@@ -23,17 +23,17 @@
 | String APIVersionHeaderKey |This allows the http header key to be changed for receiving the API version nubmer. Default is "X-API-VER".|
 | String LastChangedDateKey  |This allows the key for the last changed date http parameter to be changed. Default is "ChangedSinceDateTimeUtc".|
  | | |
-|Database settings| |
+|**Database settings**| |
 | String DatabaseName |Name to store the database in the file structure on the phone.|
 | Int32 CurrentDbVersion |The database version hard coded into this version of the app. If an instance of the app encounters an older version it assumes the database has been restructured, deletes and rebuilds it.|
 | String DatabaseEncryptionPassword |If the database is encrypted, this is the password.|
 | String DatabaseEncryptionLicence |If the database is encrypted, this is the licence key.|
  | | |
-|Operational support settings|  |
+|**Operational support settings**|  |
 | String AppCenterIosKey  |AppCenter iOS key for crashing and analytics.|
 | String AppCenterAndroidKey |AppCenter Android key for crashing and analytics.|
 | Boolean TrackEventsTurnedOn |Whether to send out what pages and methods the user executed. Used for operational support.|
 | | |
-|General settings | |
+|**General settings** | |
 | Boolean ErrorMessagesAsDialogs |Gets a value indicating whether the setting of an ErrorMessage in view models automatically the error in a dialog box.|
 
