@@ -1,34 +1,71 @@
-# Creating a New App
+# Creating a new app Using the Persistence Framework
 
-## Project settup 
-Note: A Marketplace Template will be available soon.
+To create an app using the Persistence Framework you need to firstly:
+* Decide on your app name.
+* Decide on the models that it will use and how they relate to each other.
+* Decide on the pages that need to be created.
+* Decide on the interactions required with the server.
 
-1. Contact [support@melbappdev.com](mailto:support@melbappdev.com) to get a copy of the template.
-2. Unzip the template
-3. Rename the PersistenceFrameworkTemplate folder name to your new app name.
-4. Run the RenameTemplateMac or RenameTemplateWin script to rename the namespaces and projects to your new app name.
-5. Build and run.
+Armed with this information you can create an app in one of two ways:
+1. Data first, or
+2. View first (prototyping)
 
-## Models, dataabase records and data transfer objects
-For each model in the system create the following using Widget.cs, WidgetDto.cs and WidgetServices.cs as templates:
-* A database record / data transfer object called Dtos/__name__Dto.cs using WidgetDto.cs as a template
-* A model called Models/__name__.cs using Widget.cs as a template
-* A model services class called ModelServices/__name__Services.cs using WidgetServices.cs as a template
+Our preference is data first because we are IT people and we always define our data, but an equally valid approach is prototyping. Prototyping is:
+* Follow the Views and ViewModels instruction below but don't have any bindings to show data (use mocked up text).
+* Add the ViewModels but within these only include commands (e.g button pusses) and navigation.
+* At a later time follow the Database, Models and ModelServices instructions below and progressively add them to your app.
+* Update your pages one at a time until your app "becomes alive".
 
-Note:
-* Each model needs to encapsulate its parents using lazy loading and its children for maximum code reuse.
-* Each model services class will be implemented as a singlton so register them in App.xaml.cs  ->  RegisterTypes()
+The following instructions are assuming a data first approach.
 
-Once done, update the CreateTables(), DropTables() and TestDataSetup() methods in App.xaml.cs.
-Increment the PersistenceSettings.CurrentDbVersionValue to cause the database scheme to be rebuilt.
+__Database, Models and ModelServices__
 
-## Views and ViewModels
-For each page create views and viewmodels using the WidgetListPage and WidgetPage as templates.
-New pages need to be registered in App.xaml.cs  ->  RegisterTypes()
+1. Create a copy of the PersistenceFrameworkTemplate using with you app name.
+2. For each model, create classes for 
+	2.1 [DTOs](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail.html/#DTOs)
+	2.2 Models and 
+	2.3 ModelServices.
+3. Add the CreateTable and DropTable methods.
+4. Add a method to create test data (if required).
+5. Instruct the Persistence Framework to rebuild the database schema.
 
-## Configuration
-There are a number of possible configuration points:
-* PersistenceSettings.cs implement the IPersistenceSettings interface for things like your connection string and AppCenter keys.
-* HTTP header information about the user's device can be set in App.xaml.cs  ->  SetLoginHttpHeaders().
-* Styles can be set in App.xaml in the normal Xamarin Forms manner.
-* Replace SplashScreen.jpg and icon.png in both projects to personalise your app.
+
+__Views and ViewModels__
+
+Note: leave the login page until last.
+For each page:
+
+6. Create the xaml page and code behind inheriting from BaseContentPage.
+	6.1 if the page includes a ListView control, use WidgetListPage as a template.
+	6.2 otherwise use WidgetPage as a template.
+7. Create a ViewModel using one of WidgetListPageViewModel or WidgetPageViewModel as templates.
+8. Add each as a navigatable page.
+9. For each page you want on the tab bar update TabPage.xaml.
+10. For each page you want on the menu update Menu Definitions.
+
+__Server Interactions__
+
+Note: this assumes that you are using a REST interface between your server and app. If you are not then talk to us ... advice on what to do is site specific.
+
+11. Set the server Connection String.
+12. Check and modify the 'standard' HTTP header key values.
+13. Check the http timeout parameters.
+14. Check the API and APP http header keys.
+15. Turn on server syncing.
+16. Set the auto server sync parameters.
+17. Update what has to be automatically synced.
+
+__Operational Support__
+
+16. Set the App Center keys.
+17. Check what user device information is to be recorded on the server.
+
+__Additional How To's__
+
+18. Encrypting your database.
+19. Passing parameters between pages.
+20. Updating your splash pages.
+21. Only execute a button push on a page once.
+22. Place a __spinning wheel__ overlay on a page indicating a page is loading.
+23. Optimising user experience on very first app load that has a large amount of data.
+
