@@ -18,9 +18,10 @@ Our preference is data first because we are IT people and we always define our d
 
 The following instructions are assuming a data first approach.
 
+1. [Create a new project.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#CreateAppProject)
+
 ## Database, Models and ModelServices
 
-1. [Create a copy of the PersistenceFrameworkTemplate using with you app name.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#CreateAppProject)
 2. For each model, create classes for 
 
    2.1. [DTOs](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#DTOs)
@@ -42,9 +43,13 @@ For each page:
 {:start="6"}
 
 6. Create the xaml page and code behind inheriting from BaseContentPage.
-6.1. [if the page includes a ListView control, use WidgetListPage as a template.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#DTOs)
-6.2. [otherwise use WidgetPage as a template.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#DTOs)
+
+   6.1. [if the page includes a ListView control, use WidgetListPage as a template.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#DTOs)
+
+   6.2. [otherwise use WidgetPage as a template.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#DTOs)
+
 7. [Create a ViewModel using one of WidgetListPageViewModel or WidgetPageViewModel as templates.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#DTOs)
+
 8. [Add each as a navigatable page.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#DTOs)
 9. [For each page you want on the tab bar update TabPage.xaml.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#DTOs)
 10. [For each page you want on the menu update Menu Definitions.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#DTOs)
@@ -65,16 +70,16 @@ Note: this assumes that you are using a REST interface between your server and a
 ## Operational Support
 
 {:start="18"}
-18. [Set the App Center keys.
-19. [Check what user device information is to be recorded on the server.
+18. [Set the App Center keys.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#DTOs)
+19. [Check what user device information is to be recorded on the server.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#DTOs)
 
 ## Additional How To's
 
 {:start="20"}
-20. [Encrypting your database.(https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#DTOs)
-21. [Passing parameters between pages.(https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#DTOs)
-22. [Updating your splash pages.(https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#DTOs)
-23. [Only execute a button push on a page once.(https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#DTOs)
-24. [Place a __spinning wheel__ overlay on a page indicating a page is loading.(https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#DTOs)
-24. [Optimising user experience on very first app load that has a large amount of data.(https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#DTOs)
+20. [Encrypting your database.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#DTOs)
+21. [Passing parameters between pages.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#DTOs)
+22. [Updating your splash pages.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#DTOs)
+23. [Only execute a button push on a page once.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#DTOs)
+24. [Place a __spinning wheel__ overlay on a page indicating a page is loading.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#DTOs)
+24. [Optimising user experience on very first app load that has a large amount of data.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#DTOs)
 
