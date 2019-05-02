@@ -266,62 +266,91 @@ Open the class:
 
 Note: this assumes that you are using a REST interface between your server and app. If you are not then talk to us ... advice on what to do is site specific.
 
-### <a id="ViewModel">11. Set the server Connection String.
+### <a id="Server">11. Set the server Connection String.
 
-[to be updated]
+The connection string for the API endpoint can be set in PersistenceSettings either as a once off or programatically.
 
-### <a id="ViewModel">12. Check and modify the 'standard' HTTP header key values.
+```
+public class PersistenceSettings : IPersistenceSettings
+    {
+        private static readonly string InitialBaseUrl = "https://xxx.xxx/api";
+    }
+```
 
-[to be updated]
+### <a id="Server">12. Check and modify the 'standard' HTTP header key values.
 
-### <a id="ViewModel">13. Check the http timeout parameters.
+The http header keys for communicating the session id (and others) with the server is often server dependent. These can be set in PersistenceSettings.
 
-[to be updated]
+```
+    public class PersistenceSettings : IPersistenceSettings
+    {
+        public static string SessionHeaderKeyValue = "X-SESSION";
+        public static string ProcessedDateHeaderKeyValue = "X-PROCESSED-UTC";
+        public static string APIVersionHeaderKeyValue = "X-API-VER";
+        public static string LastChangedDateKeyValue = "ChangedSinceDateTimeUtc";
+    }
+```
 
-### <a id="ViewModel">14. Check the API and APP http header keys.
+### <a id="Server">13. Check the http timeout parameters.
 
-[to be updated]
+The default http timeout value is also in the PersistenceSettings:
+```
+public TimeSpan DefaultHttpTimeout { get { return new TimeSpan(0, 1, 30); } }
+```
 
-### <a id="ViewModel">15. Turn on server syncing.
+### <a id="Server">14. Turn on server syncing.
 
-[to be updated]
-
-### <a id="ViewModel">16. Set the auto server sync parameters.
-
-[to be updated]
-
-### <a id="ViewModel">17. Update what has to be automatically synced.
+In the PersistenceSettings you can turn on automatic server syncing and other syncing parameters. We often set different values for testing and production:
+```
+#if DEBUG
+        public bool RunBatchProcessing { get { return true; } }
+        public bool RunServerSyncProcessing { get { return true; } }
+        public int ServerSyncPeriodicityMs { get { return 60 * 1000; } } // 60 seconds
+        public int ServerSyncDelayMs { get { return 60 * 1000; } } // 60 seconds
+#else
+        public bool RunBatchProcessing { get { return true; } }
+        public bool RunServerSyncProcessing { get { return true; } }
+        public int ServerSyncPeriodicityMs { get { return 10 * 60 * 1000; } } // 10 minutes
+        public int ServerSyncDelayMs { get { return 10 * 60 * 1000; } } // 10 minutes
+#endif
+```
 
 ## Operational Support
 
-### <a id="ViewModel">18. Set the App Center keys.
+### <a id="ViewModel">15. Set the App Center keys.
 
-[to be updated]
+```
+    public class PersistenceSettings : IPersistenceSettings
+    {
+         private static readonly string AppCenterIosKeyValue = "put the ios key here";
+        private static readonly string AppCenterAndroidKeyValue = "put the android key here";
+    }
+```
 
-### <a id="ViewModel">19. Check what user device information is to be recorded on the server.
+### <a id="ViewModel">15. Check what user device information is to be recorded on the server.
 
 ## Additional How To's
 
-### <a id="ViewModel">20. Encrypting your database.
+### <a id="ViewModel">16. Encrypting your database.
 
 [to be updated]
 
-### <a id="ViewModel">21. Passing parameters between pages.
+### <a id="ViewModel">17. Passing parameters between pages.
 
 [to be updated]
 
-### <a id="ViewModel">22. Updating your splash pages.
+### <a id="ViewModel">18. Updating your splash pages.
 
 [to be updated]
 
-### <a id="ViewModel">23. Only execute a button push on a page once.
+### <a id="ViewModel">19. Only execute a button push on a page once.
 
 [to be updated]
 
-### <a id="ViewModel">24. Place a __spinning wheel__ overlay on a page indicating a page is loading.
+### <a id="ViewModel">20. Place a __spinning wheel__ overlay on a page indicating a page is loading.
 
 [to be updated]
 
-### <a id="ViewModel">24. Optimising user experience on very first app load that has a large amount of data.
+### <a id="ViewModel">21. Optimising user experience on very first app load that has a large amount of data.
 
 [go to summary](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewApp)
