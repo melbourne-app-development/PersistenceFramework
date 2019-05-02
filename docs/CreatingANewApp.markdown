@@ -20,11 +20,15 @@ The following instructions are assuming a data first approach.
 
 ## Database, Models and ModelServices
 
-1. Create a copy of the PersistenceFrameworkTemplate using with you app name.(https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#CreateAppProject)
+1. [Create a copy of the PersistenceFrameworkTemplate using with you app name.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#CreateAppProject)
 2. For each model, create classes for 
+
 2.1. [DTOs](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#DTOs)
+
 2.2. [Models](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#Models) and
+
 2.3. [ModelServices.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#Models)
+
 3. [Add the CreateTable and DropTable methods.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#DTOs)
 4. [Add a method to create test data](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#DTOs) (if required).
 5. [Instruct the Persistence Framework to rebuild the database schema.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#DTOs)
@@ -36,6 +40,7 @@ Note: leave the login page until last.
 For each page:
 
 {:start="6"}
+
 6. Create the xaml page and code behind inheriting from BaseContentPage.
 6.1. [if the page includes a ListView control, use WidgetListPage as a template.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#DTOs)
 6.2. [otherwise use WidgetPage as a template.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#DTOs)
