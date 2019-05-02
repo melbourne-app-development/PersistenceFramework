@@ -1,37 +1,38 @@
 # Creating a new app Using the Persistence Framework - Detailed
 [go to summary](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewApp)
 
-## Database, Models and ModelServices
+## <a id="CreateAppProject">1. Creating a new project
 
-blah blah
+## 2. Database, Models and ModelServices
 
+Fore each model, create:
 
-### <a id="CreateAppProject">Create a copy of the PersistenceFrameworkTemplate using with you app name.
+### <a id="DTOs">2.1 DTOs
 
-blah blah
+blah
 
+### <a id="Models">2.2 Models
 
-### <a id="CreateAppProject">For each model, create classes for: 
-#### <a id="DTOs">DTOs
+blah
 
-blah blah
+### <a id="Models">2.3 ModelServices.
 
-#### <a id="Models">Models
+blah
 
-blah blah
+## <a id="CreateAppProject">3. Add the CreateTable and DropTable methods.
 
-#### <a id="Models">ModelServices.
-
-blah blah
-
-### <a id="CreateAppProject">Add the CreateTable and DropTable methods.
-
-blah blah
+blah
 
 
 
-4. [Add a method to create test data](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#DTOs) (if required).
-5. [Instruct the Persistence Framework to rebuild the database schema.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#DTOs)
+
+blah
+
+## <a id="CreateAppProject">4. [Add a method to create test data](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#DTOs) (if required).
+
+blah
+
+## <a id="CreateAppProject">5. [Instruct the Persistence Framework to rebuild the database schema.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#DTOs)
 
 
 ## Views and ViewModels
@@ -40,10 +41,22 @@ Note: leave the login page until last.
 For each page:
 
 {:start="6"}
-6. Create the xaml page and code behind inheriting from BaseContentPage.
-6.1. [if the page includes a ListView control, use WidgetListPage as a template.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#DTOs)
-6.2. [otherwise use WidgetPage as a template.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#DTOs)
-7. [Create a ViewModel using one of WidgetListPageViewModel or WidgetPageViewModel as templates.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#DTOs)
+
+blah
+
+## <a id="CreateAppProject">6. Create the xaml page and code behind inheriting from BaseContentPage.
+
+blah
+
+### <a id="CreateAppProject">6.1. [if the page includes a ListView control, use WidgetListPage as a template.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#DTOs)
+
+blah
+
+### <a id="CreateAppProject">6.2. [otherwise use WidgetPage as a template.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#DTOs)
+
+blah
+
+## <a id="CreateAppProject">7. [Create a ViewModel using one of WidgetListPageViewModel or WidgetPageViewModel as templates.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#DTOs)
 8. [Add each as a navigatable page.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#DTOs)
 9. [For each page you want on the tab bar update TabPage.xaml.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#DTOs)
 10. [For each page you want on the menu update Menu Definitions.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#DTOs)
