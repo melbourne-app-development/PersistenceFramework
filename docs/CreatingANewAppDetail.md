@@ -1,4 +1,4 @@
-# Creating a new app - detailed
+# Creating a new app using the Persistence Framework (detailed)
 [go to summary](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewApp)
 
 ## <a id="CreateAppProject">1. Creating a new project
