@@ -3,6 +3,21 @@
 
 ## <a id="CreateAppProject">1. Creating a new project
 
+Note: this will eventually become a Visual Studio extension.
+
+* Copy PersistenceFrameworkTemplate.zip to a folder.
+* Unzip it
+* Rename the folder “PersistenceFrameworkTemplate” to your project name.
+* Rename the contents of the folder to your project name by:
+
+   Windows:	Double click “RenameTemplateWin.ps1” and enter your project name.
+   Mac:	Double click “RenameTemplateMac.command” and enter your project name.
+
+When you open the solution in Visual Studio set iOS or Android as Startup Project.
+
+* The nugget source code is in PersistenceFrameworkPlugin.zip
+
+
 ## 2. Database, Models and ModelServices
 
 Fore each model, create:
@@ -111,7 +126,6 @@ Widget hasn't been defined as having a parent record but say to had a UserId pro
                         _user = await _userServices.GetAsync(UserId, UserLocalId);
                     }).Wait();
                 }
-
                 return _user;
             }
 
@@ -123,79 +137,191 @@ Widget hasn't been defined as having a parent record but say to had a UserId pro
 ```
 
 
-### <a id="Models">2.3 ModelServices.
+### <a id="ModelServices">2.3 ModelServices.
 
-blah
+If the name is "Widget":
+* Create a new class in the ModelServices folder called WidgetServices.
+* Inherit from BaseModelServices with Widget and WidgetDto as its referenced types.
+* Create an interface above it exposing the methods you want to make available.
 
-## <a id="CreateAppProject">3. Add the CreateTable and DropTable methods.
+```
+    public interface IWidgetServices
+    {
+        Task<Widget> GetAsync(string id, int? localId = null, bool getChildren = true);
+        Task<List<Widget>> GetAllAsync(bool ignoreCache = false, bool getChildren = true);
+     }
 
-blah
+    public class WidgetServices : BaseModelServices<Widget, WidgetDto>, IWidgetServices
+    {
+        public WidgetServices() : base()
+        {
+        }
+    }
+```
+
+HINT: to get the signature of a method from BaseModelService that you wish to expose:
+	 Type in 'override' and chose the method from intellisense.
+	 Copy the signature pattern to the interface and delete the the code.
+
+* Register each model services as a singleton in App.xaml.cs RegisterTypes():
+```
+        protected override void RegisterTypes(Prism.Ioc.IContainerRegistry containerRegistry)
+        {
+            containerRegistry.RegisterSingleton<IWidgetServices, WidgetServices>();
+        }
+```
 
 
+### <a id="CreateDrop">3. Add the CreateTable and DropTable methods.
 
+Go to the App.xaml.cs CreateTables() and DropTables() and add each table.
 
-blah
+```
+        private static void CreateTables(SQLiteConnection _connection)
+        {
+            DataServices.CreateTable<WidgetDto>(_connection);
+            DataServices.CreateTable<UserDto>(_connection);
+        }
 
-## <a id="CreateAppProject">4. [Add a method to create test data](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#DTOs) (if required).
+        public static void DropTables(SQLiteConnection _connection)
+        {
+            try { _connection.DropTable<WidgetDto>(); } catch { };
+            try { _connection.DropTable<UserDto>(); } catch { };
+        }
+```
 
-blah
+### <a id="TestData">4. [Add a method to create test data](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#DTOs) (if required).
 
-## <a id="CreateAppProject">5. [Instruct the Persistence Framework to rebuild the database schema.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#DTOs)
+Go to App.xaml.cs and add any test data.
+```
+        public static void TestDataSetup(SQLiteConnection _connection)
+        {
+             WidgetDto widgetDto = new WidgetDto();
 
+            widgetDto.Name = "Aqua one";
+            widgetDto.Description = "This is a aqua widget";
+            widgetDto.WidgetType = (int)WidgetType.Aqua;
+            _connection.Insert(widgetDto);
+
+            widgetDto.Name = "Black one";
+            widgetDto.Description = "This is a black widget";
+            widgetDto.WidgetType = (int)WidgetType.Black;
+            _connection.Insert(widgetDto);
+```
+
+### <a id="CurrentDBVersion">5. [Instruct the Persistence Framework to rebuild the database schema.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#DTOs)
+
+By incrementing the CurrentDbVersionValue property in the PersistenceSettings class the database will be dropped and recreated with the schema.
+```
+        private static readonly int CurrentDbVersionValue = 4;        // Change this to force rebuild of database.
+```
 
 ## Views and ViewModels
 
-Note: leave the login page until last.
 For each page:
 
-{:start="6"}
+### <a id="CreateView">6. Create the xaml page and code behind.
+
+Note: manually create a XAML page that inherits from a base page is a a bit tricky to explain. Cloning the WidgetPage or WidgetListPage and changing it's name is easier. Use whichever of WidgetPage or WidgetListPage is the closest to your new page format:
+
+* Create a Forms XAML page with code behind in the normal way, using your new page name.
+* Copy and paste the code behind of WidgetPage to you new code behind, changing "WidgetPage" to your new name.
+* Copy and paste the WidgetPage.xaml code to your new page, changing "WidgetPage" to your new name. 
+
+Add your unique design to the XAML.
 
 blah
 
-## <a id="CreateAppProject">6. Create the xaml page and code behind inheriting from BaseContentPage.
+### <a id="ViewModel">7. [Create a ViewModel.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#DTOs)
 
-blah
+For each page:
 
-### <a id="CreateAppProject">6.1. [if the page includes a ListView control, use WidgetListPage as a template.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#DTOs)
+* Create a view model in the ViewModels folder with the same name as your view, except with 'ViewModel' as a suffix. eg
+```WidgetPage.xaml`` would have a view model ```WidgetPageViewModel```
 
-blah
+* Clone either WidgetPageViewModel or WidgetListPageViewModel, global change the name to you page name, and modify the properties, commands and parameter passing as required.
 
-### <a id="CreateAppProject">6.2. [otherwise use WidgetPage as a template.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#DTOs)
+## <a id="RegisterForNavigation">8. Add each as a navigatable page.
 
-blah
+For each page, update the App.xaml.cs RegistrationTypes() method and register each page for navigation:
+```
+        protected override void RegisterTypes(Prism.Ioc.IContainerRegistry containerRegistry)
+        {
+            containerRegistry.RegisterForNavigation<WidgetPage>();
+        }
+```
 
-## <a id="CreateAppProject">7. [Create a ViewModel using one of WidgetListPageViewModel or WidgetPageViewModel as templates.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#DTOs)
-8. [Add each as a navigatable page.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#DTOs)
-9. [For each page you want on the tab bar update TabPage.xaml.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#DTOs)
-10. [For each page you want on the menu update Menu Definitions.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#DTOs)
+### <a id="TabPage">9. For each page you want on the tab bar update TabPage.xaml.
+```
+	<local:WidgetListPage />
+	<local:AboutPage />
+```
+
+### <a id="Menu">10. Add a page to the menu.
+
+Open the class:
+```Views/Menu/MenuDefinitions.cs``` and change the InitializeMenu() method.
 
 ## Server Interactions
 
 Note: this assumes that you are using a REST interface between your server and app. If you are not then talk to us ... advice on what to do is site specific.
 
-{:start="11"}
-11. [Set the server Connection String.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#DTOs)
-12. [Check and modify the 'standard' HTTP header key values.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#DTOs)
-13. [Check the http timeout parameters.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#DTOs)
-14. [Check the API and APP http header keys.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#DTOs)
-15. [Turn on server syncing.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#DTOs)
-16. [Set the auto server sync parameters.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#DTOs)
-17. [Update what has to be automatically synced.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#DTOs)
+### <a id="ViewModel">11. Set the server Connection String.
+
+[to be updated]
+
+### <a id="ViewModel">12. Check and modify the 'standard' HTTP header key values.
+
+[to be updated]
+
+### <a id="ViewModel">13. Check the http timeout parameters.
+
+[to be updated]
+
+### <a id="ViewModel">14. Check the API and APP http header keys.
+
+[to be updated]
+
+### <a id="ViewModel">15. Turn on server syncing.
+
+[to be updated]
+
+### <a id="ViewModel">16. Set the auto server sync parameters.
+
+[to be updated]
+
+### <a id="ViewModel">17. Update what has to be automatically synced.
 
 ## Operational Support
 
-{:start="18"}
-18. [Set the App Center keys.
-19. [Check what user device information is to be recorded on the server.
+### <a id="ViewModel">18. Set the App Center keys.
+
+[to be updated]
+
+### <a id="ViewModel">19. Check what user device information is to be recorded on the server.
 
 ## Additional How To's
 
-{:start="20"}
-20. [Encrypting your database.(https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#DTOs)
-21. [Passing parameters between pages.(https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#DTOs)
-22. [Updating your splash pages.(https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#DTOs)
-23. [Only execute a button push on a page once.(https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#DTOs)
-24. [Place a __spinning wheel__ overlay on a page indicating a page is loading.(https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#DTOs)
-24. [Optimising user experience on very first app load that has a large amount of data.(https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#DTOs)
+### <a id="ViewModel">20. Encrypting your database.
+
+[to be updated]
+
+### <a id="ViewModel">21. Passing parameters between pages.
+
+[to be updated]
+
+### <a id="ViewModel">22. Updating your splash pages.
+
+[to be updated]
+
+### <a id="ViewModel">23. Only execute a button push on a page once.
+
+[to be updated]
+
+### <a id="ViewModel">24. Place a __spinning wheel__ overlay on a page indicating a page is loading.
+
+[to be updated]
+
+### <a id="ViewModel">24. Optimising user experience on very first app load that has a large amount of data.
 
 [go to summary](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewApp)
