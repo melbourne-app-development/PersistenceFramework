@@ -22,9 +22,9 @@ __Database, Models and ModelServices__
 
 1. Create a copy of the PersistenceFrameworkTemplate using with you app name.
 2. For each model, create classes for 
-	2.1 [DTOs](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail.html/#DTOs)
-	2.2 Models and 
-	2.3 ModelServices.
+2.1 [DTOs](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail.html)
+2.2 Models and 
+2.3 ModelServices.
 3. Add the CreateTable and DropTable methods.
 4. Add a method to create test data (if required).
 5. Instruct the Persistence Framework to rebuild the database schema.
