@@ -3,7 +3,7 @@
 by [Melbourne App Development](https://melbourneappdevelopment.com)
 
 ## Index
-[Persistence Settings](https://melbourne-app-development.github.io/persistence-layer/PersistenceFrameworkSettings.html)
+[Persistence Settings](https://melbourne-app-development.github.io/PersistenceFramework/PersistenceFrameworkSettings.html)
 
-[Creating a new app](https://melbourne-app-development.github.io/persistence-layer/CreatingANewApp.html)
+[Creating a new app](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewApp.html)
 
