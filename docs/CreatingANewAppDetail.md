@@ -11,7 +11,7 @@ Fore each model, create:
 
 Note: We create a single definition for Data Transfer Objects (DTOs) and Database record definitions, suffixed "Dto".
 
-If the name as "Widget":
+If the name is "Widget":
 * Create new WidgetDto by right clicking the “Dtos” folder.
 * Inherit from BaseDto.
 * Add its properties (excluding audit fields like "Id" and "LastUpdatedTimestamp" - these are in the BaseDto).
@@ -29,7 +29,99 @@ If you wish to exclude a property from being send to the server, add the attribu
 
 ### <a id="Models">2.2 Models
 
-blah
+If the name is "Widget":
+* Create a new class in the Models folder called Widget.
+* Inherit from BaseModel with Widget and WidgetDto as its referenced types:
+```
+public class Widget : BaseModel<Widget, Widget Dto> 
+{
+}
+```
+* Add the same properties as the Dto.
+* Create the FromDtoMapping() and ToDtoMapping() methods.
+
+```
+    public class Widget : BaseModel<Widget, WidgetDto>
+    {
+        public string Name { get; set; }
+        public string Description { get; set; }
+ 
+        public Widget() : base()
+        {
+        }
+
+        protected override void FromDtoMapping(WidgetDto dto)
+        {
+            Name = dto.Name;
+            Description = dto.Description;
+        }
+
+        protected override void ToDtoMapping(WidgetDto dto)
+        {
+            dto.Name = Name;
+            dto.Description = Description;
+        }
+    }
+```
+
+* For each of the models children types, add a list of children:
+
+If a Widget has a WidgetPart as its child then add:
+```
+        public List<WidgetPart> WidgetPartList { get; set; }
+```
+
+Populate the children lists by overriding the following method:
+```
+        protected override async Task<bool> GetChildrenFromDatabaseAsync(WidgetDto dto)
+        {
+            WidgetPartList = await _widgetPartServices.GetAllForParentAsync(this);
+            if (WidgetPartList == null)
+                return false;
+            return true;
+        }
+```
+
+Which means you'll need to add any model services (see next section) as dependency injections in the constructor:
+```
+        private readonly IWidgetPartServices _widgetPartServices;
+        public Widget() : base()
+        {
+            _widgetPartServices = _iocContainer.Resolve<IWidgetPartServices>();
+        }
+```
+
+* For each of the models parent or foreign keys, add the parent object to model.
+Each parent object should be 'lazy loaded' - I.e. only build the object if there is 'get' for it.
+
+Widget hasn't been defined as having a parent record but say to had a UserId property then it would like like this:
+```
+        public string UserId { get; set; }
+        public string UserLocalId { get; set; }
+
+        private User _user { get; set; } = null;
+        public User User
+        {
+            get
+            {
+                if (_user == null)
+                {
+                    Task.Run(async () =>
+                    {
+                        _user = await _userServices.GetAsync(UserId, UserLocalId);
+                    }).Wait();
+                }
+
+                return _user;
+            }
+
+            set
+            {
+                _user = value;
+            }
+        }
+```
+
 
 ### <a id="Models">2.3 ModelServices.
 
