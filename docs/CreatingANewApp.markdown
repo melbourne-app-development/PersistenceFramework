@@ -1,6 +1,7 @@
 # Creating a new app Using the Persistence Framework
 [go to detailed explanation](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail)
 
+
 To create an app using the Persistence Framework you need to firstly:
 * Decide on your app name.
 * Decide on the models that it will use and how they relate to each other.
@@ -56,27 +57,24 @@ For each page:
 Note: this assumes that you are using a REST interface between your server and app. If you are not then talk to us ... advice on what to do is site specific.
 
 {:start="11"}
-11. [Set the server Connection String.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#DTOs)
-12. [Check and modify the 'standard' HTTP header key values.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#DTOs)
-13. [Check the http timeout parameters.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#DTOs)
-14. [Check the API and APP http header keys.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#DTOs)
-15. [Turn on server syncing.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#DTOs)
-16. [Set the auto server sync parameters.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#DTOs)
-17. [Update what has to be automatically synced.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#DTOs)
+11. [Set the server Connection String.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#Server)
+12. [Check and modify the 'standard' HTTP header key values.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#Server)
+13. [Check the http timeout parameters.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#Server)
+14. [Turn on server syncing.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#Server)
 
 ## Operational Support
 
-{:start="18"}
-18. [Set the App Center keys.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#DTOs)
-19. [Check what user device information is to be recorded on the server.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#DTOs)
+{:start="15"}
+15. [Set the App Center keys.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#Server)
+16. [Check what user device information is to be recorded on the server.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#Server)
 
 ## Additional How To's
 
-{:start="20"}
-20. [Encrypting your database.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#DTOs)
-21. [Passing parameters between pages.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#DTOs)
-22. [Updating your splash pages.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#DTOs)
-23. [Only execute a button push on a page once.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#DTOs)
-24. [Place a __spinning wheel__ overlay on a page indicating a page is loading.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#DTOs)
-24. [Optimising user experience on very first app load that has a large amount of data.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#DTOs)
+{:start="17"}
+20. [Encrypting your database.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#Server)
+21. [Passing parameters between pages.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#Server)
+22. [Updating your splash pages.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#Server)
+23. [Only execute a button push on a page once.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#Server)
+24. [Place a __spinning wheel__ overlay on a page indicating a page is loading.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#Server)
+24. [Optimising user experience on very first app load that has a large amount of data.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#Server)
 
