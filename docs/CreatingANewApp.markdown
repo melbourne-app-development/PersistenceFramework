@@ -20,6 +20,7 @@ The following instructions are assuming a data first approach.
 
 1. [Create a new project.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#CreateAppProject)
 
+
 ## Database, Models and ModelServices
 
 2. For each model, create classes for 
