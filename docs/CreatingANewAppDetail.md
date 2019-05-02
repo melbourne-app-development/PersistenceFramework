@@ -1,4 +1,4 @@
-# Creating a new app Using the Persistence Framework - Detailed
+# Creating a new app - detailed
 [go to summary](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewApp)
 
 ## <a id="CreateAppProject">1. Creating a new project
@@ -9,7 +9,23 @@ Fore each model, create:
 
 ### <a id="DTOs">2.1 DTOs
 
-blah
+Note: We create a single definition for Data Transfer Objects (DTOs) and Database record definitions, suffixed "Dto".
+
+If the name as "Widget":
+* Create new WidgetDto by right clicking the “Dtos” folder.
+* Inherit from BaseDto.
+* Add its properties (excluding audit fields like "Id" and "LastUpdatedTimestamp" - these are in the BaseDto).
+
+e.g.
+```
+public class WidgetDto : BaseDto 
+{ 	public string Name  	{get; set;}
+	public string Description 	{get; set;}
+}
+```
+
+If you wish to exclude a property from being saved to the database, add the attribute [Ignore] on the line before.
+If you wish to exclude a property from being send to the server, add the attribute [JsonIgnore] on the line before.
 
 ### <a id="Models">2.2 Models
 
