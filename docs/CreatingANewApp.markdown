@@ -1,4 +1,5 @@
 # Creating a new app Using the Persistence Framework
+[go to detailed explanation](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail)
 
 To create an app using the Persistence Framework you need to firstly:
 * Decide on your app name.
