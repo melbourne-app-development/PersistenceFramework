@@ -277,7 +277,7 @@ public class PersistenceSettings : IPersistenceSettings
     }
 ```
 
-### <a id="Server">12. Check and modify the 'standard' HTTP header key values.
+### <a id="Headers">12. Check and modify the 'standard' HTTP header key values.
 
 The http header keys for communicating the session id (and others) with the server is often server dependent. These can be set in PersistenceSettings.
 
@@ -291,14 +291,14 @@ The http header keys for communicating the session id (and others) with the serv
     }
 ```
 
-### <a id="Server">13. Check the http timeout parameters.
+### <a id="Timeout">13. Check the http timeout parameters.
 
 The default http timeout value is also in the PersistenceSettings:
 ```
 public TimeSpan DefaultHttpTimeout { get { return new TimeSpan(0, 1, 30); } }
 ```
 
-### <a id="Server">14. Turn on server syncing.
+### <a id="ServerSync">14. Turn on server syncing.
 
 In the PersistenceSettings you can turn on automatic server syncing and other syncing parameters. We often set different values for testing and production:
 ```
@@ -317,7 +317,7 @@ In the PersistenceSettings you can turn on automatic server syncing and other sy
 
 ## Operational Support
 
-### <a id="ViewModel">15. Set the App Center keys.
+### <a id="AppCenter">15. Set the App Center keys.
 
 ```
     public class PersistenceSettings : IPersistenceSettings
@@ -327,30 +327,95 @@ In the PersistenceSettings you can turn on automatic server syncing and other sy
     }
 ```
 
-### <a id="ViewModel">15. Check what user device information is to be recorded on the server.
+### <a id="DeviceInfo">16. Check what user device information is to be recorded on the server.
+
+Understanding your users and what device they are one is important:
+1. In a crash situation,
+2. General understanding of what type of client uses your app, and
+3. For asset management for corporate clients.
+
+The follow information is sent to the server when a user logs in which can be changed in App.xaml.cs:
+```
+        private static void SetLoginHttpHeaders(HttpClient httpClient)
+        {
+            httpClient.DefaultRequestHeaders.Add("X-DEVICE-ID", String.Format("{0}", deviceId));
+            httpClient.DefaultRequestHeaders.Add("X-MANUFACTURER", String.Format("{0}", DeviceInfo.Manufacturer));
+            httpClient.DefaultRequestHeaders.Add("X-MODEL", String.Format("{0}", DeviceInfo.Model));
+            httpClient.DefaultRequestHeaders.Add("X-DEVICE-NAME", String.Format("{0}", DeviceInfo.Name));
+            httpClient.DefaultRequestHeaders.Add("X-OS", String.Format("{0}", DeviceInfo.VersionString));
+            httpClient.DefaultRequestHeaders.Add("X-PLATFORM", String.Format("{0}", DeviceInfo.Platform));
+            httpClient.DefaultRequestHeaders.Add("X-IDIOM", String.Format("{0}", DeviceInfo.Idiom));
+
+            httpClient.DefaultRequestHeaders.Add("X-APP-VER", AppVersionHelper.Build(VersionTracking.CurrentVersion, VersionTracking.CurrentBuild));
+        }
+```
 
 ## Additional How To's
 
-### <a id="ViewModel">16. Encrypting your database.
+### <a id="DBEncrypt">17. Encrypting your database.
 
-[to be updated]
+To encrypt a database we use [Zetetic's SQLCipher product](https://www.zetetic.net/sqlcipher/) which when we last checked was USD$499 per developer per platform. For installation instructions please contact the supplier, but these two fields in PersistenceSettings will need to be set:
+```
+        public string DatabaseEncryptionPassword { get { throw new NotImplementedException("Database encryption not implemented"); } }
+        public string DatabaseEncryptionLicence { get { throw new NotImplementedException("Database encryption not implemented"); } }
+```
 
-### <a id="ViewModel">17. Passing parameters between pages.
+### <a id="PassingParams">18. Passing parameters between pages.
 
-[to be updated]
+The following snippet show passing parameters when a row is selected on the example WidgetListPage:
+```
+        private async Task DoOnItemTappedCommand(Widget item)
+        {
+            var param = new NavigationParameters();
+            param.Add("Widget", item);
 
-### <a id="ViewModel">18. Updating your splash pages.
+            await _navigationService.NavigateAsync("WidgetPage", param, true, true);
+        }
+```
 
-[to be updated]
+The following is a snippet from the example WidgetPage when receiving the passed Widget object:
+```
+        public override void OnNavigatingTo(INavigationParameters parameters)
+        {
+            base.OnNavigatingTo(parameters);
+            if (parameters.ContainsKey("Widget"))
+            {
+                Widget = (Widget)parameters["Widget"];
+            }
+        }
+```
 
-### <a id="ViewModel">19. Only execute a button push on a page once.
+### <a id="Splash">19. Updating your splash pages.
 
-[to be updated]
+The simplest way to update splash pages on both Android and iOS is to replace the ```SplashScreen.jpg```. Splash screen are a bit of a pain ... chaining any of the other files may cause you problems. 
 
-### <a id="ViewModel">20. Place a __spinning wheel__ overlay on a page indicating a page is loading.
+### <a id="SingleRun">20. Only execute a button push on a page once.
 
-[to be updated]
+View models inherit from BaseViewModel which provides the method SingleRun(). Wrap this method around the code that you only want to have executed once and subsequent clicks will be ignored:
 
-### <a id="ViewModel">21. Optimising user experience on very first app load that has a large amount of data.
+```
+await SingleRun(async () => 
+{ 
+ --- code you only want to execute once
+});
+```
+
+### <a id="Spinning">21. Place a __spinning wheel__ overlay on a page indicating a page is loading.
+
+In the CustomControls folder you will find a StackLayout based XAML called Loading.xaml that is designed place a grey overlay on top of an existing page whenever a view model property called IsBusyLoading is set to true. To implement this:
+
+1. define the property ```public bool IsBusyLoading {get; set;}``` in your view model.
+2. add the Loading control to the bottom of your xaml page in a way that it covers the whole screen, in a grid for example:
+   ```
+    <Grid>
+         <customcontrols:Loading/>
+    </Grid>
+   ```
+3. add the 'customcontrol' definition in the heading of your xaml page:
+   ```
+    xmlns:customcontrols="clr-namespace:Cashbook.CustomControls"
+   ```
+4. set IsBusyLoading to true or false where required.
+
 
 [go to summary](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewApp)
