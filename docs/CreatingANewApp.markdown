@@ -28,9 +28,11 @@ The following instructions are assuming a data first approach.
 
 {:start="2"}
 2. For each model, create classes for 
+
 2.1. [DTOs](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#DTOs)
 2.2. [Models](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#Models) and
 2.3. [ModelServices.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#ModelServices)
+
 3. [Add the CreateTable and DropTable methods.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#CreateDrop)
 4. [Add a method to create test data](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#TestData) if required.
 5. [Instruct the Persistence Framework to rebuild the database schema.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#CurrentDBVersion)
