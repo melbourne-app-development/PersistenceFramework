@@ -230,8 +230,6 @@ Note: manually create a XAML page that inherits from a base page is a a bit tric
 
 Add your unique design to the XAML.
 
-blah
-
 ### <a id="ViewModel">7. [Create a ViewModel.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#DTOs)
 
 For each page:
