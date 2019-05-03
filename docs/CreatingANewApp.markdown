@@ -30,7 +30,9 @@ The following instructions are assuming a data first approach.
 2. For each model, create classes for 
 
 2.1. [DTOs](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#DTOs)
+
 2.2. [Models](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#Models) and
+
 2.3. [ModelServices.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#ModelServices)
 
 3. [Add the CreateTable and DropTable methods.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#CreateDrop)
@@ -46,7 +48,9 @@ For each page:
 {:start="6"}
 
 6. [Create the xaml page and code behind.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#CreateView)
+
 7. [Create a ViewModel.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#ViewModel)
+
 8. [Add each as a navigatable page.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#RegisterForNavigation)
 9. [For each page you want on the tab bar update TabPage.xaml.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#TabPage)
 10. [For each page you want on the menu update Menu Definitions.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#Menu)
