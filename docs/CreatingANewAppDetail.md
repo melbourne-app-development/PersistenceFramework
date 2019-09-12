@@ -348,7 +348,7 @@ The follow information is sent to the server when a user logs in which can be ch
         }
 ```
 
-### <a id="Logging">16. Logging Services.
+### <a id="Logging">17. Logging Services.
 
 Crash logging is implemented using AppCenter using the keys above. Application event logging is implemented as follows:
 
@@ -364,7 +364,7 @@ Crash logging is implemented using AppCenter using the keys above. Application e
 8. If the Log Level is set to 5 or above LogServices will automatically take snapshots of memory useage at 10 second intervals and send the max memour usage in the previous mentioned untidy close down log.
 
 The list of current logging methods include, and subject to change (all are static calls):
-|------|------|
+
 |Method|Description|
 |------|------|
 |LogNavigationEvent|Logs the page name. This is the method called automatically at LogLevel >= 1|
@@ -376,12 +376,11 @@ The list of current logging methods include, and subject to change (all are stat
 |LogCrashEvent|Logs that a crash event has happened. It does not include the exception details (these are in AppCenter). This is automatically called whenever ExceptionServices is called to handle a crash|
 |TrackElapsedTime|Used to measure how long something takes to execute and logs the result. Used like this:|
 ||using (var itemToTrack = LogServices.TrackElapsedTime("name of thing")) { // some code that takes time }|
-|------|------|
 
 	
 ## Additional How To's
 
-### <a id="DBEncrypt">17. Encrypting your database.
+### <a id="DBEncrypt">18. Encrypting your database.
 
 To encrypt a database we use [Zetetic's SQLCipher product](https://www.zetetic.net/sqlcipher/) which when we last checked was USD$499 per developer per platform. For installation instructions please contact the supplier, but these two fields in PersistenceSettings will need to be set:
 ```
@@ -389,7 +388,7 @@ To encrypt a database we use [Zetetic's SQLCipher product](https://www.zetetic.n
         public string DatabaseEncryptionLicence { get { throw new NotImplementedException("Database encryption not implemented"); } }
 ```
 
-### <a id="PassingParams">18. Passing parameters between pages.
+### <a id="PassingParams">19. Passing parameters between pages.
 
 The following snippet show passing parameters when a row is selected on the example WidgetListPage:
 ```
@@ -414,11 +413,11 @@ The following is a snippet from the example WidgetPage when receiving the passed
         }
 ```
 
-### <a id="Splash">19. Updating your splash pages.
+### <a id="Splash">20. Updating your splash pages.
 
 The simplest way to update splash pages on both Android and iOS is to replace the ```SplashScreen.jpg```. Splash screen are a bit of a pain ... chaining any of the other files may cause you problems. 
 
-### <a id="SingleRun">20. Only execute a button push on a page once.
+### <a id="SingleRun">21. Only execute a button push on a page once.
 
 View models inherit from BaseViewModel which provides the method SingleRun(). Wrap this method around the code that you only want to have executed once and subsequent clicks will be ignored:
 
@@ -429,7 +428,7 @@ await SingleRun(async () =>
 });
 ```
 
-### <a id="Spinning">21. Place a __spinning wheel__ overlay on a page indicating a page is loading.
+### <a id="Spinning">22. Place a __spinning wheel__ overlay on a page indicating a page is loading.
 
 In the CustomControls folder you will find a StackLayout based XAML called Loading.xaml that is designed place a grey overlay on top of an existing page whenever a view model property called IsBusyLoading is set to true. To implement this:
 
