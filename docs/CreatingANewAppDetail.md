@@ -357,7 +357,7 @@ Crash logging is implemented using AppCenter using the keys above. Application e
 3. The persistence layer automaticaly logs at log level = 1 app start, and all page navigations.
 4. Logs are sent to the server via the LogDto class with the payload being a json string converted to base64, along with basic information such as deviceId, userId. You server should take these dto records and save them.
 ```
-    public class LogDto : BaseDto
+    public class LogDto 
     {
         public string AppAbbrev { get; set; }   // Derived from the Application name. e.g. "MineOpps Survey" = "MOS"
         public string SessionId { get; set; }
