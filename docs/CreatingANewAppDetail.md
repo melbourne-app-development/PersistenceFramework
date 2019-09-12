@@ -356,6 +356,18 @@ Crash logging is implemented using AppCenter using the keys above. Application e
 2. Logging can dynamically be changed by setting the http header "X-LOG-LEVEL" when a user logs in.
 3. The persistence layer automaticaly logs at log level = 1 app start, and all page navigations.
 4. Logs are sent to the server via the LogDto class with the payload being a json string converted to base64, along with basic information such as deviceId, userId. You server should take these dto records and save them.
+```    public class LogDto : BaseDto
+    {
+        public string AppAbbrev { get; set; }   // Derived from the Application name. e.g. "MineOpps Survey" = "MOS"
+        public string SessionId { get; set; }
+        public string DeviceId { get; set; }
+        public string UserId { get; set; }
+        public string JsonTextAsBase64 { get; set; }
+        public double MaxMemoryUsed { get; set; }
+        public DateTime? LastUpdatedTimestamp { get; set; }
+    }
+```
+
 5. To implement your app specific logging such as data values, in your App.xaml.csw create a PersistenceRegistration.LogApplicationDataDelegate and register it with PersistenceRegistration.RegisterDelegates() (also in App.xaml.cs). This is designed to take in an object, you write the code to process it.
 6. When you call LogServices.LogApplicationData(object) it will call LogApplicationDataDelegate() to process the passed in object. The result you return will be JSON serialized, converted to base64 and sent to the server. In your LogApplicationDataDelegate() you should not json serialise and you should not call LogServices.Log(). If you wish to log data from multiple sources, pass them in as a tuple and return the object you wish to be serialized. If your app uses GUIDs for Id's you may wish to truncate the Id's tot he first 8 characters.
 
