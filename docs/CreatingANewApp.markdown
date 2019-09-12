@@ -74,10 +74,10 @@ Note: this assumes that you are using a REST interface between your server and a
 
 ## Additional How To's
 
-{:start="17"}
-17. [Encrypting your database.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#DBEncrypt)
-18. [Passing parameters between pages.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#PassingParams)
-19. [Updating your splash pages.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#Splash)
-20. [Only execute a button push on a page once.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#SingleRun)
-21. [Place a __spinning wheel__ overlay on a page indicating a page is loading.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#Spinning)
+{:start="18"}
+18. [Encrypting your database.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#DBEncrypt)
+19. [Passing parameters between pages.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#PassingParams)
+20. [Updating your splash pages.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#Splash)
+21. [Only execute a button push on a page once.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#SingleRun)
+22. [Place a __spinning wheel__ overlay on a page indicating a page is loading.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#Spinning)
 
