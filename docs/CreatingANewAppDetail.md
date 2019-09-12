@@ -348,6 +348,19 @@ The follow information is sent to the server when a user logs in which can be ch
         }
 ```
 
+### <a id="Logging">16. Logging Services.
+
+Crash logging is implemented using AppCenter using the keys above. Application event logging is implemented as follows:
+
+1. PersistenceSettings.LogLevel indicates the level of logging to be performed. (0 = none, 9 = highest level of detail, default = 1)
+2. Logging can dynamically be changed by setting the http header "X-LOG-LEVEL" when a user logs in.
+3. The persistence layer automaticaly logs at log level = 1 app start, and all page navigations.
+4. Logs are sent to the server via the LogDto class with the payload being a json string converted to base64, along with basic information such as deviceId, userId. You server should take these dto records and save them.
+5. To implement your app specific logging such as data values, in your App.xaml.csw create a PersistenceRegistration.LogApplicationDataDelegate and register it with PersistenceRegistration.RegisterDelegates() (also in App.xaml.cs). This is designed to take in an object, you write the code to process it.
+6. When you call LogServices.LogApplicationData(object) it will call LogApplicationDataDelegate() to process the passed in object. The result you return will be JSON serialized, converted to base64 and sent to the server. In your LogApplicationDataDelegate() you should not json serialise and you should not call LogServices.Log(). If you wish to log data from multiple sources, pass them in as a tuple and return the object you wish to be serialized.
+7. If the app is restarted without being closed down properly (e.g. a StackOverflow crash), on restart a log message to this effect will be sent to the server.
+8. If the Log Level is set to 5 or above LogServices will automatically take snapshots of memory useage at 10 second intervals and send the max memour usage in the previous mentioned untidy close down log.
+	
 ## Additional How To's
 
 ### <a id="DBEncrypt">17. Encrypting your database.
