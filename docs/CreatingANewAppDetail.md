@@ -367,13 +367,13 @@ The list of current logging methods include, and subject to change (all are stat
 
 |Method|Description|
 |------|------|
-|LogNavigationEvent|Logs the page name. This is the method called automatically at LogLevel >= 1|
-|LogUICotrolAction|Logs a click on the specified UI control|
-|LogAction|A general method for logging something within a specified method within a specified class|
-|LogApplicationData|A delegate class that you can write to log applicaiton specific data|
-|UpdateMaxMemory|Updates the maximum memory used. This method is automatically called every 10 second at log level >= 5|
-|LogDeviceInfo|Logs a complete picture of the device. Automatically called on app initialisation|
-|LogCrashEvent|Logs that a crash event has happened. It does not include the exception details (these are in AppCenter). This is automatically called whenever ExceptionServices is called to handle a crash|
+|LogNavigationEvent|Logs the page name. This is the method called automatically at LogLevel >= 1.|
+|LogUICotrolAction|Logs a click on the specified UI control.|
+|LogAction|A general method for logging something within a specified method within a specified class.|
+|LogApplicationData|A delegate class that you can write to log applicaiton specific data.|
+|UpdateMaxMemory|Updates the maximum memory used. This method is automatically called every 10 second at log level >= 5. It relies on PersistenceRegistration.Sleep() and PersistenceRegistration.Resume() being called in the OnStart() and OnResume() overrides in App.xaml.cs.|
+|LogDeviceInfo|Logs a complete picture of the device. Automatically called on app initialisation, but only if PersistenceRegistration.Start() is called in OnStart() in App.xaml.cs|
+|LogCrashEvent|Logs that a crash event has happened. It does not include the exception details (these are in AppCenter). This is automatically called whenever ExceptionServices is called to handle a crash.|
 |TrackElapsedTime|Used to measure how long something takes to execute and logs the result. Used like this:|
 ||using (var itemToTrack = LogServices.TrackElapsedTime("name of thing")) { // some code that takes time }|
 
