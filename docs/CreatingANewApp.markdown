@@ -70,6 +70,7 @@ Note: this assumes that you are using a REST interface between your server and a
 {:start="15"}
 15. [Set the App Center keys.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#AppCenter)
 16. [Check what user device information is to be recorded on the server.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#DeviceInfo)
+17. [Logging.](https://melbourne-app-development.github.io/PersistenceFramework/CreatingANewAppDetail#Logging)
 
 ## Additional How To's
 
