@@ -390,6 +390,15 @@ The list of current logging methods include, and subject to change (all are stat
 |TrackElapsedTime|Used to measure how long something takes to execute and logs the result. Used like this:|
 ||using (var itemToTrack = LogServices.TrackElapsedTime("name of thing")) { // some code that takes time }|
 
+The following lists what the persistence layer logs are which log level value:
+
+|Log Level|Description|
+|-----|-----|
+|1|Basic navigation navigation information including page name and method name.|
+|1|Logs user timeout and Bad Request errors|
+|1|Logs an untidy start ... i.e. an app start without a proper app close.|
+|2|LogApplicationData() is only called to log application uspplied data on loge level 2 and above.|
+|5|Keeps track of memory useage every 10 minutes|
 	
 ## Additional How To's
 
