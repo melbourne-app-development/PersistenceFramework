@@ -394,6 +394,8 @@ The following lists what the persistence layer logs are which log level value:
 
 |Log Level|Description|
 |-----|-----|
+|0|Device information is always logged on app start|
+|0|If the app failed to exit tidily on restart it will log this event, with memory usage if being tracked (see lelg leve 5 below).|
 |1|Basic navigation navigation information including page name and method name.|
 |1|Logs user timeout and Bad Request errors|
 |1|Logs an untidy start ... i.e. an app start without a proper app close.|
