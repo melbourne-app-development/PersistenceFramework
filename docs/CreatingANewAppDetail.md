@@ -397,6 +397,7 @@ The following lists what the persistence layer logs are which log level value:
 |1|Basic navigation navigation information including page name and method name.|
 |1|Logs user timeout and Bad Request errors|
 |1|Logs an untidy start ... i.e. an app start without a proper app close.|
+|2|All failed logins|
 |2|LogApplicationData() is only called to log application uspplied data on loge level 2 and above.|
 |5|Keeps track of memory useage every 10 minutes|
 	
